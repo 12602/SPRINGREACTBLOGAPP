@@ -3,6 +3,7 @@ package com.example.demo.Entity;
 
 
 import java.util.Date;
+import java.util.HashSet;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -17,11 +18,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
 public class Post{
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public java.util.Set<Integer> getLikesByUser() {
+		return likesByUser;
+	}
+
+	public void setLikesByUser(java.util.Set<Integer> likesByUser) {
+		this.likesByUser = likesByUser;
+	}
+
 	public Post(String description, String name, String image, String category, User user) {
 		super();
 		this.description = description;
@@ -52,7 +70,8 @@ public class Post{
 	@Override
 	public String toString() {
 		return "Post [description=" + description + ", name=" + name + ", createdAt=" + createdAt + ", image=" + image
-				+ ", category=" + category + ", postId=" + postId + ", user=" + user + "]";
+				+ ", category=" + category + ", postId=" + postId + ", user=" + user + ", likes=" + likes
+				+ ", likesByUser=" + likesByUser + "]";
 	}
 
 	public Post() {
@@ -115,7 +134,9 @@ public class Post{
 //	    @JsonIgnore	
 		  
 	  User user;
-	 
+             public int likes;
+             
+	public java.util.Set<Integer>likesByUser=new HashSet<>();	 
 
 
    

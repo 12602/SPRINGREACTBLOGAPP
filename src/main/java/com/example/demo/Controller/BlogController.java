@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entity.Post;
@@ -61,11 +62,20 @@ public class BlogController {
 		     
 		   
 	   }
+	   @CrossOrigin("http://localhost:3000")
 	   @GetMapping("/trendingBlogs")
 	    public List<Post>trendingBlogs(){
 		   
 		   return post.getTrendingBlogs();
 		   
+	   }
+	   @GetMapping("/like/{userid}/{postid}")
+	   public String likeBlog(@PathVariable("userid")int userid,@PathVariable("postid")int postid){
+		   
+		  String res= post.like(userid, postid);
+		 // System.out.println(userid+" "+postid);
+
+		   return res;
 	   }
 //	   @DeleteMapping("/{id}")
 //	   public User deleteUser(@PathVariable("id")int id)

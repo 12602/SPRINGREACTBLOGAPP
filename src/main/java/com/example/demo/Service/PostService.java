@@ -84,9 +84,31 @@ public class PostService {
 		 
 	  }
 	  public List<Post> getTrendingBlogs(){
-		  List<Post	>li=new ArrayList<>();
+		 
+		  	return blog.findPostOrderBylikesByUser();
 		  	
-		  return li;
+		 
+	  }
+	  public String like(int uid,int postId) {
+		 try {
+			 Post p= blog.findById(postId);
+			  
+			   if(p.likesByUser.contains(uid)==false)
+			   {
+				   p.likesByUser.add(uid);
+				   p.likes=p.likesByUser.size();
+				   
+			   }
+			  
+			  blog.save(p);
+			  return "Like Blog Suceesfully";	
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "Error in liking blog";
+		} 
+		
+		 
+		  
 	  }
  
 }

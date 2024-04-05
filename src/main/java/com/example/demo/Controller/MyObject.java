@@ -1,5 +1,9 @@
 package com.example.demo.Controller;
 
+import java.util.HashSet;
+
+import org.hibernate.mapping.Set;
+
 import com.example.demo.Entity.User;
 
 public class MyObject 
@@ -60,5 +64,7 @@ public class MyObject
     public String description;
     public User user;
     public String category;
+	public int likes;
+	public java.util.Set<User>likesByUser=new HashSet<>();
     // getters and setters
 }
